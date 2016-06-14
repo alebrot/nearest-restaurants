@@ -2,6 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BaseUrl</key>
+	<string>https://api.foursquare.com/v2/</string>
+	<key>FoursquareAPIVersion</key>
+	<string>20131016</string>
+	<key>ClientSecret</key>
+	<string>RZUPVJ1A1WHMDMPUI5FIXWK0HPIRDE5WFCTIGUBQ2ZRYMYRH</string>
+	<key>ClientId</key>
+	<string>P0YNPCXRE0XEKB2CFMO3YWSPRH4UJX23EAD1HAGCDYVKAZGS</string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>I need to know where you are to show the appropriate results.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
