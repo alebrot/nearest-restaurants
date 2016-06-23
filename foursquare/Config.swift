@@ -16,4 +16,11 @@ struct Config {
         static let baseUrl = CommonUtilities.getStringFromMainBundle("BaseUrl")!
         static let version = CommonUtilities.getStringFromMainBundle("FoursquareAPIVersion")!
     }
+    
+    struct TableView {
+        struct CellIdentifiers {
+            static let VenueCell = "VenueCell"
+        }
+        static var listLoadLimit = 20;
+    }
 }

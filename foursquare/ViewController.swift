@@ -7,40 +7,37 @@
 //
 
 /*
-https://api.foursquare.com/v2/venues/search?ll=40.7,-74&client_id=P0YNPCXRE0XEKB2CFMO3YWSPRH4UJX23EAD1HAGCDYVKAZGS&client_secret=RZUPVJ1A1WHMDMPUI5FIXWK0HPIRDE5WFCTIGUBQ2ZRYMYRH&v=20131016
-*/
- import UIKit
+ https://api.foursquare.com/v2/venues/search?ll=40.7,-74&client_id=P0YNPCXRE0XEKB2CFMO3YWSPRH4UJX23EAD1HAGCDYVKAZGS&client_secret=RZUPVJ1A1WHMDMPUI5FIXWK0HPIRDE5WFCTIGUBQ2ZRYMYRH&v=20131016
+ */
+
+import UIKit
 import CoreLocation
 import MapKit
 import Foundation
 
+protocol ViewControllerDelegate{
+    func annotationSelected(annotation: PlaceAnnotation)
+}
+
 class ViewController: UIViewController {
     
+    
+    var delegate: ViewControllerDelegate?
+    
+    var currentLocation: CLLocation?
+    
     @IBOutlet weak var mapView: MKMapView!
-    var locationManager: CLLocationManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let venuesTableViewController = AppDelegate.sharedInstance.venuesTableViewController
+        venuesTableViewController.delegate = self
         
-       // FoursquareRequest.getVenuesSearch(FoursquareRequest)
-        //40.7,-74
-        
-//mapView.centerCoordinate
-        FoursquareApiManager.request.getVenuesSearch(CLLocationCoordinate2D(latitude: 40.7, longitude: -74), limit: 100, offset: 0) { (ok, objects, error) in
-            print(objects)
-        }
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reposition", style: .Plain, target: self, action: #selector(repositionTapped))
         
         mapView.delegate = self
         
-        if (CLLocationManager.locationServicesEnabled())
-        {
-            locationManager = CLLocationManager()
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.requestLocation()
-        }
         
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -52,53 +49,36 @@ class ViewController: UIViewController {
     }
     
     
+    let regionRadius: CLLocationDistance = 1000 //1km
+    
+    func centerMapOnLocation(location: CLLocation) {
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
+                                                                  regionRadius * 2.0, regionRadius * 2.0)
+        mapView.setRegion(coordinateRegion, animated: true)
+    }
+    
+    
+    func repositionTapped(sender: UIBarButtonItem){
+        AppDelegate.sharedInstance.locationManager.requestLocation()
+    }
+    
 }
 
-extension ViewController:CLLocationManagerDelegate{
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.last{
-            let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-            
-            self.mapView.setRegion(region, animated: true)
-            
-            //locationManager.stopUpdatingLocation()
-            
-            // show artwork on map
-            let artwork = PlaceAnnotation(title: "King David Kalakaua",
-                                  locationName: "Waikiki Gateway Park",
-                                  coordinate: location.coordinate)
-            
-            mapView.addAnnotation(artwork)
-            
-            
-        }
-    }
-    
-    
-    
-    
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print(error)
-    }
-}
+
+
+
 extension ViewController:MKMapViewDelegate{
-    
-    func mapView(mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-        let centre = mapView.centerCoordinate;
-        print(centre)
-    }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? PlaceAnnotation {
             let identifier = "pin"
             var view: MKPinAnnotationView
             if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
-                as? MKPinAnnotationView { // 2
+                as? MKPinAnnotationView {
                 dequeuedView.annotation = annotation
                 view = dequeuedView
             } else {
-                // 3
+                
                 view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
                 view.calloutOffset = CGPoint(x: -5, y: 5)
@@ -110,32 +90,50 @@ extension ViewController:MKMapViewDelegate{
         return nil
     }
     
+    
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
         if let placeAnnotation = view.annotation as? PlaceAnnotation{
-            print(placeAnnotation)
+            self.navigationController?.popViewControllerAnimated(true)
+            self.delegate?.annotationSelected(placeAnnotation)
         }
-  
     }
 }
 
-class PlaceAnnotation: NSObject, MKAnnotation {
-    let title: String?
-    var subtitle: String? {
-        return locationName
-    }
-    let coordinate: CLLocationCoordinate2D
-
+extension ViewController: VenuesTableViewControllerDelegate{
     
-    let locationName: String
-    
-    init(title: String, locationName: String, coordinate: CLLocationCoordinate2D) {
-        self.title = title
-        self.locationName = locationName
-        self.coordinate = coordinate
+    func venuesLoaded(venues: [Venue], forLocation location: CLLocation) {
         
-        super.init()
+        currentLocation = location
+        
+        var newAnnotations = [PlaceAnnotation]()
+        for venue in venues{
+            let artwork = PlaceAnnotation(title: venue.name,
+                                          locationName: venue.location.address,
+                                          coordinate: venue.location.coordinate)
+            newAnnotations.append(artwork)
+        }
+        
+        self.performOnMainThread({
+            let annotationsToRemove = self.mapView.annotations.filter { $0 !== location }
+            self.mapView.removeAnnotations( annotationsToRemove )
+            self.mapView.addAnnotations(newAnnotations)
+            self.centerMapOnLocation(location)
+        })
     }
+    
+    func venueSelected(venue: Venue) {
+        let annotations = self.mapView.annotations.filter { $0.coordinate.latitude == venue.location.coordinate.latitude && $0.coordinate.longitude == venue.location.coordinate.longitude}
+        if annotations.count>0{ //found
+            let annotation = annotations[0]
+            if let annotationView = self.mapView.viewForAnnotation(annotation){
+                annotationView.highlight()
+                self.mapView.selectAnnotation(annotation, animated: true)
+            }
+        }
+    }
+    
 }
+
 
 

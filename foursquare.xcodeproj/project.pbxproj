@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		423BA73E1D116B9E00F18215 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423BA73D1D116B9E00F18215 /* UIViewController.swift */; };
+		423BA7431D12AFC000F18215 /* VenuesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423BA7421D12AFC000F18215 /* VenuesTableViewController.swift */; };
+		423BA7461D12B06D00F18215 /* VenueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423BA7451D12B06D00F18215 /* VenueCell.swift */; };
 		426136761D0FFCF7004581CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426136751D0FFCF7004581CF /* AppDelegate.swift */; };
 		426136781D0FFCF7004581CF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426136771D0FFCF7004581CF /* ViewController.swift */; };
 		4261367B1D0FFCF7004581CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 426136791D0FFCF7004581CF /* Main.storyboard */; };
@@ -24,6 +27,8 @@
 		426136B41D103F20004581CF /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426136B31D103F20004581CF /* Location.swift */; };
 		426136B71D1040A5004581CF /* VenueMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426136B61D1040A5004581CF /* VenueMapper.swift */; };
 		426136B91D1040CB004581CF /* LocationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426136B81D1040CB004581CF /* LocationMapper.swift */; };
+		42A82ECC1D193430002E4191 /* MKAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A82ECB1D193430002E4191 /* MKAnnotationView.swift */; };
+		42F72CEC1D12E0CB0021DFDE /* PlaceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F72CEB1D12E0CB0021DFDE /* PlaceAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +49,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		423BA73D1D116B9E00F18215 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		423BA7421D12AFC000F18215 /* VenuesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenuesTableViewController.swift; sourceTree = "<group>"; };
+		423BA7451D12B06D00F18215 /* VenueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueCell.swift; sourceTree = "<group>"; };
 		426136721D0FFCF7004581CF /* foursquare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = foursquare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		426136751D0FFCF7004581CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		426136771D0FFCF7004581CF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +75,8 @@
 		426136B31D103F20004581CF /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		426136B61D1040A5004581CF /* VenueMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VenueMapper.swift; sourceTree = "<group>"; };
 		426136B81D1040CB004581CF /* LocationMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationMapper.swift; sourceTree = "<group>"; };
+		42A82ECB1D193430002E4191 /* MKAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKAnnotationView.swift; sourceTree = "<group>"; };
+		42F72CEB1D12E0CB0021DFDE /* PlaceAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +104,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		423BA7411D12ADFB00F18215 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				426136771D0FFCF7004581CF /* ViewController.swift */,
+				423BA7421D12AFC000F18215 /* VenuesTableViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		423BA7441D12B04F00F18215 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				423BA7451D12B06D00F18215 /* VenueCell.swift */,
+				42F72CEB1D12E0CB0021DFDE /* PlaceAnnotation.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		426136691D0FFCF7004581CF = {
 			isa = PBXGroup;
 			children = (
@@ -117,11 +145,12 @@
 		426136741D0FFCF7004581CF /* foursquare */ = {
 			isa = PBXGroup;
 			children = (
+				423BA7441D12B04F00F18215 /* Cells */,
+				423BA7411D12ADFB00F18215 /* Controllers */,
 				426136B51D10407D004581CF /* Mappers */,
 				426136AE1D1024FF004581CF /* Models */,
 				426136A91D10242D004581CF /* Extensions */,
 				426136751D0FFCF7004581CF /* AppDelegate.swift */,
-				426136771D0FFCF7004581CF /* ViewController.swift */,
 				426136791D0FFCF7004581CF /* Main.storyboard */,
 				4261367C1D0FFCF7004581CF /* Assets.xcassets */,
 				4261367E1D0FFCF7004581CF /* LaunchScreen.storyboard */,
@@ -156,6 +185,8 @@
 			children = (
 				426136AA1D102455004581CF /* NSURL.swift */,
 				426136AC1D1024E5004581CF /* NSData.swift */,
+				423BA73D1D116B9E00F18215 /* UIViewController.swift */,
+				42A82ECB1D193430002E4191 /* MKAnnotationView.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -317,11 +348,16 @@
 				426136781D0FFCF7004581CF /* ViewController.swift in Sources */,
 				426136A61D101E76004581CF /* Config.swift in Sources */,
 				426136B71D1040A5004581CF /* VenueMapper.swift in Sources */,
+				423BA7431D12AFC000F18215 /* VenuesTableViewController.swift in Sources */,
+				42F72CEC1D12E0CB0021DFDE /* PlaceAnnotation.swift in Sources */,
+				423BA73E1D116B9E00F18215 /* UIViewController.swift in Sources */,
+				423BA7461D12B06D00F18215 /* VenueCell.swift in Sources */,
 				426136761D0FFCF7004581CF /* AppDelegate.swift in Sources */,
 				426136A81D101EBC004581CF /* Utilities.swift in Sources */,
 				426136B21D102551004581CF /* BaseMapper.swift in Sources */,
 				426136AD1D1024E5004581CF /* NSData.swift in Sources */,
 				426136A41D101DCD004581CF /* FoursquareRequest.swift in Sources */,
+				42A82ECC1D193430002E4191 /* MKAnnotationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
