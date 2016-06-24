@@ -29,6 +29,8 @@
 		426136B91D1040CB004581CF /* LocationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426136B81D1040CB004581CF /* LocationMapper.swift */; };
 		42A82ECC1D193430002E4191 /* MKAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A82ECB1D193430002E4191 /* MKAnnotationView.swift */; };
 		42A82ED01D1D6CF7002E4191 /* FoursquareApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A82ECF1D1D6CF7002E4191 /* FoursquareApiManager.swift */; };
+		42A82ED31D1D6E9B002E4191 /* nearest-restaurants-map.png in Resources */ = {isa = PBXBuildFile; fileRef = 42A82ED11D1D6E9B002E4191 /* nearest-restaurants-map.png */; };
+		42A82ED41D1D6E9B002E4191 /* nearest-restaurants-venues.png in Resources */ = {isa = PBXBuildFile; fileRef = 42A82ED21D1D6E9B002E4191 /* nearest-restaurants-venues.png */; };
 		42F72CEC1D12E0CB0021DFDE /* PlaceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F72CEB1D12E0CB0021DFDE /* PlaceAnnotation.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +80,8 @@
 		426136B81D1040CB004581CF /* LocationMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationMapper.swift; sourceTree = "<group>"; };
 		42A82ECB1D193430002E4191 /* MKAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKAnnotationView.swift; sourceTree = "<group>"; };
 		42A82ECF1D1D6CF7002E4191 /* FoursquareApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareApiManager.swift; sourceTree = "<group>"; };
+		42A82ED11D1D6E9B002E4191 /* nearest-restaurants-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nearest-restaurants-map.png"; sourceTree = "<group>"; };
+		42A82ED21D1D6E9B002E4191 /* nearest-restaurants-venues.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nearest-restaurants-venues.png"; sourceTree = "<group>"; };
 		42F72CEB1D12E0CB0021DFDE /* PlaceAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,6 +131,8 @@
 		426136691D0FFCF7004581CF = {
 			isa = PBXGroup;
 			children = (
+				42A82ED11D1D6E9B002E4191 /* nearest-restaurants-map.png */,
+				42A82ED21D1D6E9B002E4191 /* nearest-restaurants-venues.png */,
 				426136741D0FFCF7004581CF /* foursquare */,
 				426136891D0FFCF7004581CF /* foursquareTests */,
 				426136941D0FFCF7004581CF /* foursquareUITests */,
@@ -317,7 +323,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42A82ED31D1D6E9B002E4191 /* nearest-restaurants-map.png in Resources */,
 				426136801D0FFCF7004581CF /* LaunchScreen.storyboard in Resources */,
+				42A82ED41D1D6E9B002E4191 /* nearest-restaurants-venues.png in Resources */,
 				4261367D1D0FFCF7004581CF /* Assets.xcassets in Resources */,
 				4261367B1D0FFCF7004581CF /* Main.storyboard in Resources */,
 			);
