@@ -73,8 +73,3 @@ class FoursquareRequest {
     }
     
 }
-
-
-struct FoursquareApiManager{
-    static let request = FoursquareRequest(baseUrl: Config.FoursquareAPI.baseUrl, clientId: Config.FoursquareAPI.clientId, clientSecret: Config.FoursquareAPI.clientSecret, version: Config.FoursquareAPI.version)
-}

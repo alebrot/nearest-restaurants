@@ -52,7 +52,7 @@ class VenuesTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let venue = self.venues[indexPath.row]
-        if let detailViewController = self.delegate as? ViewController {
+        if let detailViewController = self.delegate as? MapViewController {
             splitViewController?.showDetailViewController(detailViewController, sender: nil)
         }
         self.delegate?.venueSelected(venue)
@@ -87,7 +87,7 @@ class VenuesTableViewController: UITableViewController {
     
 }
 
-extension VenuesTableViewController: ViewControllerDelegate{
+extension VenuesTableViewController: MapViewControllerDelegate{
     func annotationSelected(annotation: PlaceAnnotation) {
         for (index, venue) in venues.enumerate() {
             if(venue.location.coordinate.latitude == annotation.coordinate.latitude && venue.location.coordinate.longitude == annotation.coordinate.longitude){

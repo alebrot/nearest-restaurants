@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MapViewController.swift
 //  foursquare
 //
 //  Created by khlebtsov alexey on 14/06/16.
@@ -15,14 +15,14 @@ import CoreLocation
 import MapKit
 import Foundation
 
-protocol ViewControllerDelegate{
+protocol MapViewControllerDelegate{
     func annotationSelected(annotation: PlaceAnnotation)
 }
 
-class ViewController: UIViewController {
+class MapViewController: UIViewController {
     
     
-    var delegate: ViewControllerDelegate?
+    var delegate: MapViewControllerDelegate?
     
     var currentLocation: CLLocation?
     
@@ -67,7 +67,7 @@ class ViewController: UIViewController {
 
 
 
-extension ViewController:MKMapViewDelegate{
+extension MapViewController:MKMapViewDelegate{
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? PlaceAnnotation {
@@ -100,7 +100,7 @@ extension ViewController:MKMapViewDelegate{
     }
 }
 
-extension ViewController: VenuesTableViewControllerDelegate{
+extension MapViewController: VenuesTableViewControllerDelegate{
     
     func venuesLoaded(venues: [Venue], forLocation location: CLLocation) {
         

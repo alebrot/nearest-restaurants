@@ -31,8 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return nvc.viewControllers[0] as! VenuesTableViewController
     }
     
-    var mapViewController: ViewController{
-        return rootViewController.viewControllers[1] as! ViewController
+    var mapViewController: MapViewController{
+        return rootViewController.viewControllers[1] as! MapViewController
     }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
